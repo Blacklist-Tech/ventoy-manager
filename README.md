@@ -1,50 +1,57 @@
-# Ventoy Manager V1.0 🥂
-### Professional Persistence & Multiboot Management Suite
+# Ventoy Manager
 
-**Ventoy Manager** is a premium, Apple-grade desktop utility designed for professional technicians and power users. It provides a hardened, visual interface for managing Ventoy bootable media, specialized in production-ready persistence layers and hardware safety.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-blue.svg)]()
+[![Electron](https://img.shields.io/badge/built%20with-Electron-47848f.svg)](https://www.electronjs.org/)
 
-![Hallmark](assets/hallmark.png)
+A desktop utility for managing [Ventoy](https://www.ventoy.net/) bootable USB drives with persistence layer support and built-in hardware safety guards. Designed for technicians, IT professionals, and power users.
 
-## 🛡️ The "Steel Wall" Safety Engine
-Ventoy Manager is engineered with absolute hardware safety at its core:
-*   **System Drive Protection**: Programmatic blocking of the `C:` drive to prevent accidental data loss.
-*   **Atomic UI Guard**: Prevents race conditions during heavy disk operations (Install/Create/Remove).
-*   **Triple-Check Detection**: A robust discovery engine that identifies Ventoy geometry even when OS labels are missing.
+## Features
 
-## ✨ Key Features
-*   **X-Ray Telemetry**: High-fidelity visualization of partition storage (Free/Total) for both Data and EFI Boot Engine.
-*   **One-Click Persistence**: Create stable Ext2/Ext4 persistence layers with pre-flight disk space auditing.
-*   **Production Hardened**: Hardened against shell injection and environmental instability.
-*   **Blacklist Aesthetic**: Premium dark mode interface designed for high-end studio and field environments.
+- **Drive Discovery** — Automatically detects Ventoy-formatted drives, even when OS volume labels are missing
+- **Persistence Management** — Create and manage Ext2/Ext4 persistence layers with pre-flight disk space auditing
+- **System Drive Protection** — Programmatic block on the `C:` drive to prevent accidental writes to the system disk
+- **Partition Telemetry** — Visual breakdown of storage usage across data and EFI boot partitions
+- **Atomic Operations** — UI guards against race conditions during disk operations
 
-## 🚀 Getting Started
+## Requirements
 
-### Prerequisites
-*   **Windows 10/11**
-*   **Administrative Privileges** (Required for disk manipulation)
-*   [Node.js](https://nodejs.org/) (For development)
+- Windows 10 or 11
+- Administrator privileges (required for disk I/O)
+- [Node.js](https://nodejs.org/) 18+ (development only)
 
-### Installation (Dev Mode)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YourUsername/ventoy-manager.git
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Launch the suite:
-   ```bash
-   npm start
-   ```
+## Installation
 
-## 🛠️ Tech Stack
-*   **Core**: Electron / Node.js
-*   **Hardware Bridge**: PowerShell 5.1+ (Native Windows Integration)
-*   **Styling**: Vanilla CSS (Custom Design System)
+### From source
 
-## 🛡️ Security & Integrity
-The application uses a secure IPC bridge for hardware commands. All shell inputs are sanitized to block command injection, and a global **Admin Watchdog** ensures the engine only runs when permissions are elevated.
+```bash
+git clone https://github.com/Blacklist-Tech/ventoy-manager.git
+cd ventoy-manager
+npm install
+npm start
+```
 
----
-Built by **Blacklist Tech** — *Production. Repair. Innovation.*
+### Pre-built binary
+
+Download the latest release from the [Releases](https://github.com/Blacklist-Tech/ventoy-manager/releases) page.
+
+## Usage
+
+1. Launch Ventoy Manager as Administrator
+2. Insert a Ventoy-formatted USB drive
+3. Use the dashboard to view partition info, create persistence, or manage boot configurations
+
+## Architecture
+
+- **Frontend** — HTML/CSS/JS (Electron renderer)
+- **Backend** — Node.js (Electron main process)
+- **Hardware Bridge** — PowerShell 5.1+ for native Windows disk operations
+- **IPC** — Sanitized shell commands over Electron's `contextBridge` with injection prevention
+
+## Contributing
+
+Bug reports and pull requests are welcome. Please open an issue to discuss changes before submitting a PR.
+
+## License
+
+MIT © [Blacklist Tech](https://github.com/Blacklist-Tech)
