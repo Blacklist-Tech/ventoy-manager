@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventoy Manager — Premium Persistence</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark">
+    <div id="app">
+        <!-- Custom Title Bar -->
+        <header class="title-bar">
+            <div class="drag-region">
+                <img src="../icon_v10.png" class="icon-accent" style="height: 16px; width: 16px; object-fit: contain;">
+                <span>Ventoy Manager <span class="version">V1.0</span></span>
+            </div>
+            <div class="controls">
+                <button id="minimize-btn"><i data-lucide="minus"></i></button>
+                <button id="close-btn" class="close"><i data-lucide="x"></i></button>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- Sidebar: Drive Stats -->
+            <aside class="sidebar">
+                <div id="drive-list" class="drive-container">
+                    <div class="loading-state-mini">Scanning hardware...</div>
+                </div>
+                
+                <nav class="actions">
+                    <button id="nav-iso" class="nav-btn active">
+                        <i data-lucide="layers"></i>
+                        <span>ISO Manager</span>
+                    </button>
+                    <button id="nav-settings" class="nav-btn">
+                        <i data-lucide="settings"></i>
+                        <span>Settings</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+            <div id="admin-banner" class="admin-warning hidden">
+                <i data-lucide="shield-alert"></i>
+                <span>ADMIN PRIVILEGES REQUIRED: Please restart as Administrator to manage persistence.</span>
+            </div>
+            
+            <section id="iso-view" class="view">
+                <header class="view-header">
+                    <h1>ISO Persistence Layers</h1>
+                    <button id="refresh-btn" class="btn-secondary">
+                        <i data-lucide="rotate-cw"></i>
+                    </button>
+                </header>
+
+                <div id="iso-grid" class="grid">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Scanning Ventoy Drive...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settings-view" class="main-view hidden">
+                <header class="view-header">
+                    <h1>Application Settings</h1>
+                </header>
+
+                <div class="settings-grid">
+                    <div class="settings-group">
+                        <h3>Engine Configuration</h3>
+                        <div class="setting-item">
+                            <div class="info">
+                                <span class="label">Persistence Suffix</span>
+                                <span class="desc">Define the suffix for newly created .dat files.</span>
+                            </div>
+                            <input type="text" id="setting-suffix" class="input-dark" value="-persistence.dat">
+                        </div>
+                        <div class="setting-item">
+                            <div class="info">
+                                <span class="label">Safety Delete</span>
+                                <span class="desc">Always ask before deleting .dat files from disk.</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-safety" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Discovery</h3>
+                        <div class="setting-item">
+                            <div class="info">
+                                <span class="label">Hardware Fingerprint Scan</span>
+                                <span class="desc">Verify VTOYEFI partition on every refresh.</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-deep-scan" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Diagnostic Logs</h3>
+                        <div class="console-wrapper">
+                            <div id="log-console" class="console-box">Initializing console...</div>
+                        </div>
+                    </div>
+
+                    <footer class="brand-footer">
+                        <i data-lucide="shield"></i>
+                        <span>MADE BY BLACKLIST TECH</span>
+                        <span class="version">V1.0 PRODUCTION</span>
+                    </footer>
+                </div>
+            </section>
+        </main>
+
+        <!-- Action Modal (Persistence Slider) -->
+        <div id="modal-overlay" class="hidden">
+            <div class="modal">
+                <h2>Configure Persistence</h2>
+                <p id="modal-iso-name">ISO Name</p>
+                
+                <div class="slider-container">
+                    <label>Size: <span id="size-val">4</span> GB</label>
+                    <input type="range" id="size-slider" min="1" max="64" value="4">
+                </div>
+
+                <div class="setting-item" style="background: transparent; border: none; padding: 0; margin-top: 10px;">
+                    <div class="info">
+                        <span class="label">Internal Label</span>
+                        <span class="desc">persistence (Debian/Kali) or casper-rw (Ubuntu)</span>
+                    </div>
+                    <select id="label-selector" class="input-dark" style="width: 120px;">
+                        <option value="persistence">persistence</option>
+                        <option value="casper-rw">casper-rw</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="cancel-btn" class="btn-secondary">Cancel</button>
+                    <button id="create-btn" class="btn-primary">Create Persistence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

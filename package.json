@@ -1,0 +1,38 @@
+{
+  "name": "ventoy-manager",
+  "version": "3.3.0",
+  "description": "Premium Windows-Native Ventoy Persistence Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "ventoy",
+    "persistence",
+    "blacklist-tech"
+  ],
+  "author": "Blacklist Tech",
+  "license": "MIT",
+  "build": {
+    "appId": "com.blacklist.ventoymanager",
+    "productName": "Ventoy Manager",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "engine.js",
+      "renderer/**/*"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3"
+  }
+}

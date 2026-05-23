@@ -1,0 +1,32 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Logs
+logs/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+release/
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+
+# Local environment
+.env
+.vscode/
+
+# Ventoy binaries
+bin/
+
+# Logs directory
+logs/
